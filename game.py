@@ -1,5 +1,6 @@
 import random
 import string
+import requests
 
 class Game():
     def __init__(self):
@@ -16,4 +17,8 @@ class Game():
                 grid2.remove(i)
             except:
                 return False
+        url = "https://wagon-dictionary.herokuapp.com/" + str(data)
+        response = requests.get(url)
+        if not response.json()["found"]:
+            return False
         return True
